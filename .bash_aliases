@@ -29,6 +29,10 @@ alias fgrep='fgrep --color=auto'
 #
 alias c='clear'
 
+# Print wd
+#
+alias p='pwd'
+
 # tar
 #
 alias untar='tar -zxvf'

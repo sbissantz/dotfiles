@@ -22,6 +22,11 @@ fi
 # Environment variables
 #
 
+# SSH Agent
+# https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login
+# https://wiki.archlinux.org/title/SSH_keys#SSH_agents
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 # Editors
 #
 export EDITOR="nvim"

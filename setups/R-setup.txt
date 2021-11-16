@@ -1,0 +1,195 @@
+#
+# R Setup
+# https://cran.r-project.org/bin/linux/fedora/
+# http://dirk.eddelbuettel.com/blog/2017/11/27/#011_faster_package_installation_one
+# https://pat-s.me/post/arch-install-guide-for-r/
+#
+
+#
+# pre-R 
+#
+
+dnf install ccache
+
+# Edit: ~/.R/Makevars (create it if missing) 
+# -- see: direk.eddelbuettel (above)
+	VER=
+	CCACHE=ccache
+	CC=$(CCACHE) gcc$(VER)
+	CXX=$(CCACHE) g++$(VER)
+	C11=$(CCACHE) g++$(VER)
+	C14=$(CCACHE) g++$(VER)
+	FC=$(CCACHE) gfortran$(VER)
+	F77=$(CCACHE) gfortran$(VER)
+
+#
+# R
+#
+
+# BLAS/LAPACK switching
+
+$ sudo dnf install r
+$ sudo dnf install R-flexiblas # install FlexiBLAS API interface for R
+$ sudo dnf install flexiblas-* # install all available optimized backends
+$ sudo dnf install v8-devel
+
+library(flexiblas)
+
+# check whether FlexiBLAS is available
+flexiblas_avail()
+#> [1] TRUE
+
+# get the current backend
+flexiblas_current_backend()
+#> [1] "OPENBLAS-OPENMP"
+
+# list all available backends
+flexiblas_list()
+#> [1] "NETLIB"           "__FALLBACK__"     "BLIS-THREADS"     "OPENBLAS-OPENMP"
+#> [5] "BLIS-SERIAL"      "ATLAS"            "OPENBLAS-SERIAL"  "OPENBLAS-THREADS"
+#> [9] "BLIS-OPENMP"
+
+# get/set the number of threads
+flexiblas_set_num_threads(12)
+flexiblas_get_num_threads()
+#> [1] 12
+
+#
+# R-devel
+#
+
+$ sudo dnf install toolbox
+$ toolbox enter --release 35
+[toolbox]$ sudo dnf install R
+[toolbox]$ R
+
+R version 4.1.0 (2021-05-18) -- "Camp Pontanezen"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-redhat-linux-gnu (64-bit)
+
+$ toolbox run --release 35 R
+
+#
+# Additionals
+#
+yay -S gcc-fortran v8-r tcl tk nlopt gsl
+
+# gcc-fortran: GNU Fortran compiler, part of GCC
+# v8-r: R interface to Google's open source JavaScript engine.
+# tcl & tk: launch the mirror selection popup if you use  R from the shell
+# without a prior defined mirror, you need
+# nlopt: Common Lisp interface to NLopt. NLopt is a free/open-source library for
+# nonlinear optimization, providing a common interface for a number of different
+# free optimization routines available online as well as original implementations
+# of various other algorithms. 
+# gsl: The GNU Scientific Library (GSL) is a modern numerical library for C and
+# C++ # programmers
+
+# Note: v8-r requires age to build (~2h). Plan your updates wisely
+
+#
+# SSH (with R) 
+# Note: Is already set up -- /setups/ssh-setup
+#
+
+# Manually
+
+# Pass cred to the credentials argument in create_from_github()
+cred <- git2r::cred_ssh_key(publickey = "~/.ssh/id_xxxxx.pub", privatekey = "~/.ssh/id_xxxxxx")
+
+# Now clone all your repos from Github, e.g.:
+create_from_github(repo = "pat-s/oddsratio", destdir = "~/git", credentials = cred). 
+
+# Check if git2r:: returns the correct credentials. Should it_xxxxx.pub
+check_ssh_key()
+
+# Automatically
+create_from_github(repo = "pat-s/oddsratio", destdir = "~/git", credentials = git2r::cred_ssh_key())
+
+#
+# Rstartup
+# https://rstats.wtf/r-startup.html
+#
+ 
+# 1. .Renviron - which contains environment variables to be set in R sessions.
+# 2. .Rprofile - which contains R code to be run in each session.
+
+#
+# .Renviron
+
+> Create 
+
+> Edit: ~/.Renviron or usethis::edit_r_environ()
+
+# Host different R versions
+# https://community.rstudio.com/t/help-regarding-package-installation-renviron-rprofile-r-libs-r-libs-site-and-r-libs-user-oh-my/13888
+# Trick: Use specifiers "%v" and "%p"
+#
+
+# Use specifiers "%v" and "%p"
+# Default: R_LIBS_USER=~/R/%p-library/%v
+# %p: expands to the architecture
+# %v: expands to the minor R version
+# i.e.: R/x86_64-library/4.0
+
+	R_LIBS_USER = ${HOME}/Rlibs/%v
+
+# IMPORTANT NOTE: Both .Renviron and .Rprofile must end with a newline character.
+# If they do not the last line with be ignored without a warning or error. 
+# VIM handles that: https://yihui.org/en/2018/04/rprofile-trailing-newline/
+
+#
+# .Rprofile (READ ON above)
+# http://kevinushey.github.io/blog/2015/02/02/rprofile-essentials/
+#
+
+# IMPORTANT NOTE: Both .Renviron and .Rprofile must end with a newline character.
+# If they do not the last line with be ignored without a warning or error. 
+# VIM handles that: https://yihui.org/en/2018/04/rprofile-trailing-newline/
+
+#
+# radian 
+#
+
+yay -S radian
+
+#
+# Rstudio
+#
+
+yay -S rstudio-desktop
+
+# IMPORTANT NOTE: Both .Renviron and .Rprofile must end with a newline character.
+# If they do not the last line with be ignored without a warning or error. 
+# Check Rstudio: Options > Code > Saving > Ensure that files end with a newline
+# character!
+
+#
+# Rstudio (with R devel)
+#
+
+https://support.rstudio.com/hc/en-us/articles/200486138-Changing-R-versions-for-RStudio-desktop
+
+#
+# Rpackages
+#
+
+# Install first (recommended)
+install.packages("git2r")
+
+pkgs <- c("gert", "devtools", "usethis")
+lapply(pkgs, install.packages, character.only=TRUE)
+
+# Rstan (TODO) -- read more on this if you use it more frequently
+# https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started
+install.packages("rstan")
+
+$ sudo dnf install libcurl-devel
+install.packages("V8")
+
+https://kbroman.org/pkg_primer/pages/build.html
+
+
+
+
+

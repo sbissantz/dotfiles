@@ -1,7 +1,6 @@
 # Overwrite/delete warnings
 #
 alias rm='rm -i'
-alias mv='mv -i'
 alias cp='cp -i'
 alias cp='cp -i'
 
@@ -35,7 +34,7 @@ alias p='pwd'
 
 # mv
 #
-alias mv='mv -v'
+alias mv='mv -v -i'
 
 # chmod
 #

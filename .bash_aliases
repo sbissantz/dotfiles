@@ -33,6 +33,14 @@ alias c='clear'
 #
 alias p='pwd'
 
+# mv
+#
+alias mv='mv -v'
+
+# chmod
+#
+alias chmod='chmod -v'
+
 # tar
 #
 alias untar='tar -zxvf'

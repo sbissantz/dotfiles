@@ -34,7 +34,7 @@ alias p='pwd'
 
 # mv
 #
-alias mv='mv -v -i'
+alias mv='mv -vi'
 
 # chmod
 #

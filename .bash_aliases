@@ -1,8 +1,6 @@
 # Overwrite/delete warnings
 #
 alias rm='rm -i'
-alias cp='cp -i'
-alias cp='cp -i'
 
 # (Colored) ls
 #
@@ -18,11 +16,15 @@ alias ...='cd ../../../'
 alias ....='cd ../../../../'
 alias .....='cd ../../../../'
 
-# (Colored) grep
+# Grep in color
 #
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+
+# Copy files
+#
+alias cp='cp -vi'
 
 # clear
 #

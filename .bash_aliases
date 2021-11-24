@@ -1,6 +1,7 @@
-# Overwrite/delete warnings
+# rm 
 #
-alias rm='rm -i'
+alias rm='rm -iv'
+alias rmdir='rmdir -v'
 
 # (Colored) ls
 #

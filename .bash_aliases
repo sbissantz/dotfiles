@@ -70,3 +70,9 @@ alias ipi='ipconfig getifaddr en0'
 # ping
 #
 alias ping='ping -c 5'
+
+# ranger
+#
+alias r="ranger"
+
+

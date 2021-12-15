@@ -75,4 +75,6 @@ alias ping='ping -c 5'
 #
 alias r="ranger"
 
+# Git
+# (see: ,gitconfig)
 

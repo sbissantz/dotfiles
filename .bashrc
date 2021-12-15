@@ -47,7 +47,7 @@ fi
 
 if [ -f $HOME/.bash_completion/complete_alias ]; then
 	. $HOME/.bash_completion/complete_alias
-	alias gitconf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+	alias gitc='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 	complete -F config _complete_alias
 else
 	echo "Steven, '~/.bash_completion/complete_alias' is missing"

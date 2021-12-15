@@ -1,0 +1,9 @@
+[user]
+	email = steven.bissantz@gmail.com
+	name = Steven Marcel Bißantz
+[credential]
+	helper = cache
+[format]
+	pretty = oneline
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit

@@ -6,10 +6,21 @@
 [format]
 	pretty = oneline
 [alias]
+	; Pretty commit logbook 
 	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	; Prettified changes between commit logs (2 lines)
 	lp2 = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p -2
+	; Pretified last commit 
 	last = log -1 HEAD --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	st = status -sb
+	; Simplified status overview	
+	s = status -sb
+	; Commit with message
 	cm = commit -m
+	; Show remote(s) 
 	rv = remote -v
+	; List remote(s) 
 	d = diff 
+	; (Global) configuration list
+	gl = config --global -l 
+	; Search for [pattern] in the commit log
+	search = '!git rev-list --all | xargs git grep -F'

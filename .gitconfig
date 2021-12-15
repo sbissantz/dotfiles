@@ -23,6 +23,6 @@
 	; (Global) configuration list
 	gl = config --global -l 
 	; Search for [pattern] in the commit log
-	search = '!git rev-list --all | xargs git grep -F'
+	;search = !git rev-list --all | xargs git grep -F
 [help]
 	autocorrect = 20

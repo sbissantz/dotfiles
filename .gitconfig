@@ -25,9 +25,14 @@
 	; Simplified status overview	
 	s = status -sb
 	;
+	; git add
+	;
+	a = add
+	;
 	; git commit
 	;
 	cm = commit -m
+	cam = commit -a -m
 	;
 	; git remote
 	;

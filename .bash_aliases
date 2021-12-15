@@ -77,4 +77,4 @@ alias r="ranger"
 
 # Git
 # (see: ,gitconfig)
-
+alias g="git"

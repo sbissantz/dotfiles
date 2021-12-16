@@ -9,7 +9,7 @@
 	;	
 	; git config
 	;
-	gl = config --global -l 
+	gl = config --list --show-origin
 	;
 	; git log
 	;

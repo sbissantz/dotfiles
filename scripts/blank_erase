@@ -1,5 +1,6 @@
 #!bin/bash
 # A script that translates tabs or spaces in a filename to underscores
+# Important Note: Applies this operation to all files within a folder! (*)
 for file in * ; do
 f=`echo $file | tr [:blank:] [_]`
 [ "$file" = "$f" ] || mv -i -- "$file" "$f"

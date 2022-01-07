@@ -1,0 +1,9 @@
+#!/bin/bash
+# A script that translates mixed upper and lower case filenames to lower case 
+# filenames! 
+# Important Note: Applies the operation to all files within a given folder! (*)
+
+for file in * ; do
+f=`echo $file | tr [A-Z] [a-z]`
+[ "$file" = "$f" ] || mv -i -- "$file" "$f"
+done

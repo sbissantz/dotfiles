@@ -4,6 +4,6 @@
 # Important Note: Applies the operation to all files within a given folder! (*)
 
 for file in * ; do
-f=`echo $file | tr [A-Z] [a-z]`
+f=`echo $file | tr [:upper:] [:lower:]`
 [ "$file" = "$f" ] || mv -i -- "$file" "$f"
 done

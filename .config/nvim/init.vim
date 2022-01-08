@@ -67,7 +67,8 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 call plug#end()   
 
 "colorscheme 256_noir
-colorscheme minimalist
+"colorscheme minimalist
+colorscheme jellybeans 
 
 " ================ Nvim-R ==================== "
 " https://github.com/jalvesaq/Nvim-R/blob/master/doc/Nvim-R.txt

@@ -1,0 +1,34 @@
+#!/bin/bash
+# A very simple todo list to qucikly add todos from the command-line. Type
+# 'todo new todo "msg" to add it to the todo list, or just type "todo todo"
+# to get the todo message.
+
+TODOLIST="~/.todolist"
+DATE=`date +%c%n`
+
+# Check if you did already start a todo list. If not create one to secure
+# your thoughts. A good idea maybe doesn't pop up twice.
+if [ ! -e "$TODOLIST" ] ; then 
+    touch ~/.todolist
+    echo "$TODOLIST didn't exist. Created it as '~/.todolist'!"
+    fc -ln -1
+    if [ $1 = "new" ] ; then 
+        echo "$2 added as todo to your todolist!"
+    fi
+    exit 0
+fi
+
+# If you forgot is no command line parameter ($#), the robot doesn't know what
+# you want, so it asks you for it. Be very literally!
+if [ $# -lt 1 ] ; then 
+    echo "What todo did you mean? Be very literally! "
+    exit 1
+fi
+
+if [ $1 = "new" ] ; then 
+    shift
+    echo $DATE $* >> $TODOLIST
+    echo ""$2" added as todo to your todolist!"
+    exit 0
+fi
+

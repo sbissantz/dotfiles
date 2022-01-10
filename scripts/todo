@@ -3,23 +3,23 @@
 # 'todo new todo "msg" to add it to the todo list, or just type "todo todo"
 # to get the todo message.
 
-TODOLIST="~/.todolist"
+TODOLIST=~/.todolist
 DATE=`date +%c%n`
 
 # Check if you did already start a todo list. If not create one to secure
 # your thoughts. A good idea maybe doesn't pop up twice.
-if [ ! -e "$TODOLIST" ] ; then 
-    touch ~/.todolist
-    echo "$TODOLIST didn't exist. Created it as '~/.todolist'!"
+if [ ! -f "$TODOLIST" ] ; then 
+    touch $TODOLIST
+    echo "$TODOLIST didn't exist. Created it as '~/.todolist.txt'!" 
     fc -ln -1
     if [ $1 = "new" ] ; then 
-        echo "$2 added as todo to your todolist!"
+        echo "$2 added as $1 to your todolist!"
     fi
     exit 0
 fi
 
 # If you forgot is no command line parameter ($#), the robot doesn't know what
-# you want, so it asks you for it. Be very literally!
+# you want, so it asks for it. Be very literally!
 if [ $# -lt 1 ] ; then 
     echo "What todo did you mean? Be very literally! "
     exit 1
@@ -28,7 +28,24 @@ fi
 if [ $1 = "new" ] ; then 
     shift
     echo $DATE $* >> $TODOLIST
-    echo ""$2" added as todo to your todolist!"
+    echo "\"$2\" added as \"$1\" to your todolist!"
     exit 0
 fi
+
+# If the file doesn't contain todos, it can't show you one. So the robots check
+# if the file exists and is larger than zero bytes. If the file meets the 
+# requirements the robot searches your todolist (Note:case-insensitive).
+if [ ! -s $TODOLIST ] ; then
+    echo "Thera are no todos in your list yet!"
+    exit 1
+else
+    grep -i -q "$*" $TODOLIST
+    if [ $? -ne 0 ] ; then
+        echo "Sorry, the specified todo is not in your list."
+        exit 1
+    else
+        grep -i "$*" $TODOLIST
+    fi
+fi
+exit 0
 

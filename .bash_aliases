@@ -25,7 +25,7 @@ alias fgrep='fgrep --color=auto'
 
 # Copy files
 #
-alias cp='cp -vi'
+alias cp='cp -via'
 
 # clear
 #

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Set up the variables...
+# 1.  
+#
+# IPADDR is not correct
+IPADDR=`ip route | grep default | cut -d " " -f3`
+CONNECT=`ip route | grep default | cut -d " " -f5`
+WEB="https://$IPADDR:9090/"
+
+dnf list --installed cockpit || sudo dnf install cockpit
+
+sudo systemctl enable --now cockpit.socket
+
+echo "Your IP is $IPADDR ($CONNECT). You will now be connected to cockpit: $WEB"
+
+$(echo $BROWSER $WEB) &
+
+

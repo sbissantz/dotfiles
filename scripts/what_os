@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+#
+MSG="Hey dude, what operating system are you currently using? "
+read -p "$MSG" OS
+case $OS in 
+    "Linux")
+        echo "Brilliant choice!";;
+    "Windows")
+        echo "OMG! Uuuugh a Windows user";;
+    "Mac")
+        echo "Uuugh Mac! One of the cool kids, huh?";;
+    *)
+        echo "Dude, that not an OS! Choose a valid one!"
+esac
+

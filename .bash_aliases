@@ -16,6 +16,8 @@ alias ..='cd ..'
 alias ...='cd ../../../'
 alias ....='cd ../../../../'
 alias .....='cd ../../../../'
+# change back!
+alias cb='cd $OLDPWD'
 
 # Grep in color
 #
@@ -51,7 +53,6 @@ alias tarit='tar -zcvf'
 # wget 
 #
 alias wget='wget -c '
-
 
 # R
 #

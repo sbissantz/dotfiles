@@ -64,7 +64,7 @@ autocmd BufRead,BufNewFile *.md setlocal spell
     "Plug 'BrandonRoehl/auto-omni'
    
     " Stan 
-    Plugin 'eigenfoo/stan-vim'
+    Plug 'eigenfoo/stan-vim'
 call plug#end()   
 
 "colorscheme 256_noir

@@ -45,7 +45,6 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 " source $HOME/.config/nvim/plugin.vim
 
  call plug#begin()                                                               
-                                                                                 
     " Interaction between R and Vim                                             
     Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}                                    
     " Comment -- very quickly                                                   
@@ -63,7 +62,9 @@ autocmd BufRead,BufNewFile *.md setlocal spell
     " Grammar and spelling 
     Plug 'rhysd/vim-grammarous' 
     "Plug 'BrandonRoehl/auto-omni'
- 
+   
+    " Stan 
+    Plugin 'eigenfoo/stan-vim'
 call plug#end()   
 
 "colorscheme 256_noir
@@ -83,4 +84,4 @@ let R_assign = 0 " prevent underscore to become '<-'
 " https://bookdown.org/yihui/rmarkdown/revealjs.html#
 " Turning Vim Into An R IDE
 " https://www.freecodecamp.org/news/turning-vim-into-an-r-ide-cd9602e8c217/
-
+"
